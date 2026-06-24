@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>欧美出口认证全品类总览 — 10大品类·80+认证</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang HK", "Noto Sans HK", "Microsoft YaHei", sans-serif;
+  background: #f3f4f6;
+  color: #1f2937;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #2d2a6e 100%);
+  border-radius: 14px;
+  padding: 32px 36px;
+  color: #fff;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.3);
+}
+.header h1 { font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+.header .sub { font-size: 13px; opacity: 0.78; }
+.header .stats { display: flex; gap: 36px; margin-top: 18px; flex-wrap: wrap; }
+.header .stat { text-align: center; }
+.header .stat-num { font-size: 34px; font-weight: 800; }
+.header .stat-label { font-size: 11px; opacity: 0.72; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Quick nav */
+.quick-nav {
+  display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 18px;
+}
+.quick-nav a {
+  display: inline-block;
+  padding: 7px 14px;
+  background: #fff;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #4b5563;
+  border: 1px solid #e5e7eb;
+  transition: all 0.18s;
+}
+.quick-nav a:hover { background: #2563eb; color: #fff; border-color: #2563eb; }
+
+/* Category section */
+.cat-section {
+  margin-bottom: 28px;
+  scroll-margin-top: 20px;
+}
+
+.cat-head {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px 22px;
+  border-left: 5px solid #2563eb;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 10px;
+}
+.cat-head .icon { font-size: 26px; }
+.cat-head h3 { font-size: 18px; color: #0f172a; }
+.cat-head .count { font-size: 12px; color: #6b7280; margin-left: auto; white-space: nowrap; }
+
+/* Checklist */
+.checklist { display: flex; flex-direction: column; gap: 8px; }
+
+.item {
+  background: #fff;
+  border-radius: 9px;
+  padding: 15px 18px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.18s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+.item:hover { border-color: #93c5fd; box-shadow: 0 2px 10px rgba(37,99,235,0.07); }
+
+.item-top { display: flex; align-items: flex-start; gap: 10px; }
+.item-check { margin-top: 2px; cursor: pointer; width: 18px; height: 18px; accent-color: #2563eb; flex-shrink: 0; }
+.item-body { flex: 1; min-width: 0; }
+
+.item-title-row { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 3px; }
+.item-title { font-size: 14.5px; font-weight: 700; color: #111827; }
+
+.badges { display: flex; gap: 5px; flex-wrap: wrap; }
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Status */
+.badge.s-enforced { background: #dcfce7; color: #166534; }
+.badge.s-market { background: #dbeafe; color: #1e40af; }
+.badge.s-pending { background: #fef3c7; color: #92400e; }
+.badge.s-voluntary { background: #f1f5f9; color: #64748b; }
+
+/* Market */
+.badge.m-eu { background: #ede9fe; color: #6d28d9; }
+.badge.m-us { background: #fdf2f8; color: #be185d; }
+.badge.m-both { background: #ecfdf5; color: #047857; }
+.badge.m-ca { background: #fff7ed; color: #ea580c; }
+
+.item-desc { font-size: 12.5px; color: #4b5563; margin: 5px 0; line-height: 1.5; }
+.item-details { margin-top: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px; }
+@media (max-width: 640px) { .item-details { grid-template-columns: 1fr; } }
+.detail-row { display: flex; font-size: 11.5px; }
+.detail-key { color: #6b7280; min-width: 62px; flex-shrink: 0; }
+.detail-val { color: #1f2937; }
+
+/* Legend */
+.legend-box {
+  background: #fff; border-radius: 8px; padding: 10px 16px;
+  display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 16px;
+  font-size: 11px; color: #6b7280;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.legend-box .sep { width: 1px; background: #d1d5db; }
+
+/* Progress */
+.progress-wrap { margin-bottom: 16px; background: #fff; border-radius: 10px; padding: 13px 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.progress-label { font-size: 12px; color: #6b7280; margin-bottom: 5px; display: flex; justify-content: space-between; }
+.progress-bar { height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, #2563eb, #3b82f6); border-radius: 4px; transition: width 0.4s; }
+
+/* Summary table */
+.quick-table { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); margin-top: 16px; }
+.quick-table th { background: #0f172a; color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; }
+.quick-table td { padding: 9px 12px; border-bottom: 1px solid #f3f4f6; vertical-align: top; }
+.quick-table tr:last-child td { border-bottom: none; }
+.quick-table tr:hover td { background: #f8fafc; }
+
+.note-box {
+  background: #fef2f2; border: 1px solid #fecaca; border-radius: 10px;
+  padding: 16px 20px; margin-top: 24px;
+}
+.note-box h4 { color: #dc2626; font-size: 14px; margin-bottom: 6px; }
+.note-box p { color: #7f1d1d; font-size: 12.5px; line-height: 1.6; }
+
+.footer-info { text-align: center; margin-top: 32px; font-size: 11px; color: #9ca3af; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>欧美出口认证全品类总览</h1>
+  <div class="sub">覆盖电子电器、玩具、食品接触、化妆品、医疗器械、家居灯具、宠物、运动户外、珠宝、PPE — 10大品类·80+认证项</div>
+  <div class="stats">
+    <div class="stat"><div class="stat-num" id="totalCount">0</div><div class="stat-label">认证项</div></div>
+    <div class="stat"><div class="stat-num" id="catCount">10</div><div class="stat-label">品类</div></div>
+    <div class="stat"><div class="stat-num" id="enforcedCount">0</div><div class="stat-label">强制</div></div>
+    <div class="stat"><div class="stat-num" id="voluntaryCount">0</div><div class="stat-label">自愿/市场</div></div>
+  </div>
+</div>
+
+<!-- Legend -->
+<div class="legend-box">
+  <strong>执行状态：</strong>
+  <span class="badge s-enforced">已执行</span> 法规已于指定年份生效，强制要求
+  <span class="badge s-market">市场强制</span> 无法规强制，但行业/平台/买家普遍要求
+  <span class="badge s-pending">将执行</span> 已公布强制实施日期
+  <span class="badge s-voluntary">自愿性</span> 非法定要求，差异化竞争力加分
+  <span class="sep"></span>
+  <strong>目标市场：</strong>
+  <span class="badge m-eu">EU</span>
+  <span class="badge m-us">US</span>
+  <span class="badge m-both">EU+US</span>
+  <span class="badge m-ca">CA</span>
+</div>
+
+<!-- Progress -->
+<div class="progress-wrap">
+  <div class="progress-label"><span>完成进度（勾选框数据保存在浏览器中）</span><span id="progressText">0/0</span></div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+</div>
+
+<!-- Quick nav -->
+<div class="quick-nav">
+  <a href="#cat-electronics">1. 电子电器</a>
+  <a href="#cat-toys">2. 玩具及儿童用品</a>
+  <a href="#cat-foodcontact">3. 食品接触材料</a>
+  <a href="#cat-cosmetics">4. 化妆品及个人护理</a>
+  <a href="#cat-medical">5. 医疗器械</a>
+  <a href="#cat-home">6. 家居用品及灯具</a>
+  <a href="#cat-pet">7. 宠物用品</a>
+  <a href="#cat-sports">8. 运动户外</a>
+  <a href="#cat-jewelry">9. 珠宝饰品</a>
+  <a href="#cat-ppe">10. 个人防护(PPE)</a>
+  <a href="#quick-table">📊 速查总表</a>
+</div>
+
+
+<!-- ============================== 1. 电子电器 ============================== -->
+<section class="cat-section" id="cat-electronics">
+<div class="cat-head"><span class="icon">⚡</span><h3>电子电器</h3><span class="count">14 项认证</span></div>
+<div class="checklist">
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="elec-01"><div class="item-body"><div class="item-title-row"><span class="item-title">CE 认证（LVD + EMC）</span><div class="badges"><span class="badge s-enforced">1993年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">欧盟市场电子产品强制准入标志。覆盖低电压安全（LVD 2014/35/EU）和电磁兼容（EMC 2014/30/EU）。所有在EU销售的电子电器产品必须加贴CE标志。无线产品额外适用RED 2014/53/EU。</div><div class="item-details"><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">2-6周（自我声明/公告机构审核）</span></div><div class="detail-row"><span class="detail-key">标准</span><span class="detail-val">EN 62368-1（安全）、EN 55032/55035（EMC）</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="elec-02"><div class="item-body"><div class="item-title-row"><span class="item-title">FCC 认证</span><div class="badges"><span class="badge s-enforced">1934年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">美国联邦通信委员会强制认证。所有含振荡器/无线发射的电子设备（频率 >9kHz）须通过FCC认证。分FCC-SDOC（普通设备自我声明）和FCC-ID（无线设备须在FCC注册并获ID）。</div><div class="item-details"><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">FCC-SDOC: 1-2周；FCC-ID: 3-6周</span></div><div class="detail-row"><span class="detail-key">标准</span><span class="detail-val">FCC Part 15（射频）、FCC Part 18（ISM设备）</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="elec-03"><div class="item-body"><div class="item-title-row"><span class="item-title">RoHS 有害物质限制</span><div class="badges"><span class="badge s-enforced">2006年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">EU 2011/65/EU (RoHS 2) + 2015/863 (RoHS 3)。限制电子产品中铅、汞、镉、六价铬、PBB、PBDE及4种邻苯二甲酸酯。2026年RoHS指令正在修订中（可能新增更多限制物质）。</div><div class="item-details"><div class="detail-row"><span class="detail-key">10项受限制物质</span><span class="detail-val">Pb≤0.1%、Hg≤0.1%、Cd≤0.01%、Cr6+≤0.1%等</span></div><div class="detail-row"><span class="detail-key">标准</span><span class="detail-val">EN IEC 63000（技术文件评定）</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="elec-04"><div class="item-body"><div class="item-title-row"><span class="item-title">WEEE 电子废弃物回收</span><div class="badges"><span class="badge s-enforced">2003年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">EU 2012/19/EU。电子产品生产商/进口商须在欧盟各成员国注册WEEE，承担产品生命周期结束后的回收处理责任。标识要求：电子设备须标贴带叉垃圾桶符号。</div><div class="item-details"><div class="detail-row"><span class="detail-key">注册</span><span class="detail-val">每个EU成员国分别注册，非一次性</span></div><div class="detail-row"><span class="detail-key">费用</span><span class="detail-val">按销量/重量缴纳回收处理费</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="elec-05"><div class="item-body"><div class="item-title-row"><span class="item-title">UL 安全认证</span><div class="badges"><span class="badge s-market">市场强制</span><span class="badge m-us">US</span></div></div><div class="item-desc">UL是美国最权威的产品安全认证。虽非法定强制，但美国零售商（Amazon、Walmart、BestBuy等）和保险公司均要求产品通过UL认证，否则无法上架或被拒保。等同的认证还有ETL（Intertek）和CSA（加拿大）。</div><div class="item-details"><div class="detail-row"><span class="detail-key">有效期</span><span class="detail-val">5年，需季度/年度工厂跟踪检验</span></div><div class="detail-row"><span class="detail-key">费用</span><span class="detail-val">首次$5,000-50,000（依产品复杂度）+年费</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="elec-06"><div class="item-body"><div class="item-title-row"><span class="item-title">ETL / MET 安全认证</span><div class="badges"><span class="badge s-market">市场强制</span><span class="badge m-us">US</span></div></div><div class="item-desc">ETL（Intertek）和MET（Eurofins MET）是UL的等效替代认证。在美国市场被同等认可（NRTL国家认可实验室出具），费用通常低于UL，审核周期更短。Amazon接受UL/ETL/MET/CSA任一种。</div><div class="item-details"><div class="detail-row"><span class="detail-key">优势vs UL</span><span class="detail-val">费用低约30-50%，审核快，市场认可度同等</span></div><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">4-8周</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="elec-07"><div class="item-body"><div class="item-title-row"><span class="item-title">ErP 能效生态设计</span><div class="badges"><span class="badge s-enforced">2009年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">EU 2009/125/EC(ErP指令) + 2017/1369(能效标签框架法规)。能耗产品（含充电器、灯具、家电等）须符合最低能效要求，并在EPREL数据库注册。能效标签从A-G分级。</div><div class="item-details"><div class="detail-row"><span class="detail-key">注册平台</span><span class="detail-val">EPREL（欧洲能效标签产品数据库）</span></div><div class="detail-row"><span class="detail-key">2026关注</span><span class="detail-val">ErP对新品类扩展（服务器、电机等）</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="elec-08"><div class="item-body"><div class="item-title-row"><span class="item-title">Energy Star 能源之星</span><div class="badges"><span class="badge s-voluntary">自愿性</span><span class="badge m-us">US</span></div></div><div class="item-desc">美国EPA和DOE联合推出的自愿性能效认证。覆盖办公设备、家电、照明、暖通等。虽为自愿，但在B2B/政府采购中几乎为事实准入条件。每年须提交数据并接受抽检。</div><div class="item-details"><div class="detail-row"><span class="detail-key">有效期</span><span class="detail-val">1年（每年续签+抽检）</span></div><div class="detail-row"><span class="detail-key">覆盖品类</span><span class="detail-val">灯具/充电器/电脑/显示器/家电等60+类</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="elec-09"><div class="item-body"><div class="item-title-row"><span class="item-title">DOE 能效认证</span><div class="badges"><span class="badge s-enforced">1975年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">美国能源部强制性能效标准。充电器、外部电源、电视、空调等产品必须满足DOE的最低能效要求，并在DOE CCMS系统注册。比Energy Star更严格——DOE是法律底线，Energy Star是加分项。</div><div class="item-details"><div class="detail-row"><span class="detail-key">性质</span><span class="detail-val">法律强制（与Energy Star自愿性不同）</span></div><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">3-5年续期</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="elec-10"><div class="item-body"><div class="item-title-row"><span class="item-title">加州 CEC 能效</span><div class="badges"><span class="badge s-enforced">1976年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">California Energy Commission强制能效认证。电源适配器、充电器、LED灯具等须在CEC MAEDBS数据库注册。虽为州级，但加州是美国最大经济体，实质上覆盖全国。</div><div class="item-details"><div class="detail-row"><span class="detail-key">与DOE关系</span><span class="detail-val">CEC标准通常比DOE更严格，加州先于联邦立法</span></div><div class="detail-row"><span class="detail-key">注册</span><span class="detail-val">CEC MAEDBS在线数据库</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="elec-11"><div class="item-body"><div class="item-title-row"><span class="item-title">CB Scheme / IECEE</span><div class="badges"><span class="badge s-voluntary">自愿性</span><span class="badge m-both">全球</span></div></div><div class="item-desc">国际电工委员会(IEC)推行的多国互认检测报告体系。一次检测，多国认可（54个成员国含欧美日）。虽非强制，但对多市场出口企业可大幅节省重复检测费用。</div><div class="item-details"><div class="detail-row"><span class="detail-key">核心价值</span><span class="detail-val">1次IEC检测 → 转CE/FCC等各国证书，省时省钱</span></div><div class="detail-row"><span class="detail-key">费用</span><span class="detail-val">单次IEC测试 + 各国转证费</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="elec-12"><div class="item-body"><div class="item-title-row"><span class="item-title">RED 无线设备指令</span><div class="badges"><span class="badge s-enforced">2016年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">EU 2014/53/EU。所有带无线功能（WiFi/BT/NFC/4G/5G等）的电子产品须通过RED认证（替代旧R&TTE指令），含安全+EMC+无线电频谱三合一。</div><div class="item-details"><div class="detail-row"><span class="detail-key">核心要求</span><span class="detail-val">安全(LVD)+EMC+频谱效率+网络安全(EN 303 645)</span></div><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">4-8周</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="elec-13"><div class="item-body"><div class="item-title-row"><span class="item-title">UKCA 英国合格评定</span><div class="badges"><span class="badge s-enforced">2021年 已执行</span><span class="badge m-eu">UK</span></div></div><div class="item-desc">脱欧后英国替代CE的新认证标志。适用于英国（不含北爱尔兰）市场。英国政府已宣布无限期延长CE标志在英国市场的接受期限，但UKCA仍是正式的法律认证。</div><div class="item-details"><div class="detail-row"><span class="detail-key">现状</span><span class="detail-val">UK政府无限期延长CE在英国的使用，UKCA非紧迫</span></div><div class="detail-row"><div class="detail-key">建议</span><span class="detail-val">暂时CE即可覆盖UK市场，长期关注政策变化</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="elec-14"><div class="item-body"><div class="item-title-row"><span class="item-title">CEC Title 20 / Title 24</span><div class="badges"><span class="badge s-enforced">1978年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">加州建筑标准法规：Title 20（电器能效）、Title 24（建筑能效）。含灯具、HVAC设备等产品须满足加州能效标准方可在加州销售。</div><div class="item-details"><div class="detail-row"><span class="detail-key">Coverage</span><span class="detail-val">灯具/家电/暖通/电机等在加州销售者</span></div><div class="detail-row"><span class="detail-key">注册</span><span class="detail-val">CEC Appliance Efficiency Database</span></div></div></div></div></div>
+
+</div>
+</section>
+
+
+<!-- ============================== 2. 玩具及儿童用品 ============================== -->
+<section class="cat-section" id="cat-toys">
+<div class="cat-head"><span class="icon">🧸</span><h3>玩具及儿童用品</h3><span class="count">6 项认证</span></div>
+<div class="checklist">
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="toy-01"><div class="item-body"><div class="item-title-row"><span class="item-title">EN 71 玩具安全标准</span><div class="badges"><span class="badge s-enforced">1988年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">欧盟玩具安全指令2009/48/EC配套标准，是欧洲史上最严格的玩具安全体系。分13个部分：EN 71-1（机械与物理性能）、EN 71-2（可燃性）、EN 71-3（19种可迁移元素限量）、EN 71-9~11（有机化合物）等。进入欧盟市场必须通过。</div><div class="item-details"><div class="detail-row"><span class="detail-key">强制项</span><span class="detail-val">EN 71-1（物理）、-2（可燃）、-3（重金属19项）</span></div><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">5-10工作日/检测</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="toy-02"><div class="item-body"><div class="item-title-row"><span class="item-title">ASTM F963 玩具安全标准</span><div class="badges"><span class="badge s-enforced">1986年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">美国玩具安全的基石标准（现行ASTM F963-23版）。覆盖机械物理安全、可燃性、重金属（锑/砷/钡/镉/铬/铅/汞/硒共8种可溶元素）、微生物清洁度。CPSIA法案将此标准提升为强制要求。</div><div class="item-details"><div class="detail-row"><span class="detail-key">版本</span><span class="detail-val">ASTM F963-23（2023年发布）</span></div><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">5-10工作日/检测</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="toy-03"><div class="item-body"><div class="item-title-row"><span class="item-title">CPSIA 儿童产品合规</span><div class="badges"><span class="badge s-enforced">2008年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">美国消费品安全改进法案(CPSIA 2008)。面向12岁及以下儿童产品的联邦强制法案。关键要求：总铅≤100ppm（基材）及90ppm（表面涂层）、8种邻苯二甲酸酯≤0.1%、永久性溯源标签、CPC（儿童产品证书）出具。</div><div class="item-details"><div class="detail-row"><span class="detail-key">CPC</span><span class="detail-val">美国进口商/制造商须出具CPC证书（CPSC认可实验室检测）</span></div><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">5-10工作日/检测（铅+邻苯）</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="toy-04"><div class="item-body"><div class="item-title-row"><span class="item-title">CE 玩具安全指令</span><div class="badges"><span class="badge s-enforced">2009年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">EU 2009/48/EC（Toy Safety Directive, TSD）。除EN 71检测外，还要求：(1) EC符合性声明(DoC)、(2) CE标志、(3) 制造商/欧盟进口商名称地址在包装上、(4) 技术文件存档10年。</div><div class="item-details"><div class="detail-row"><span class="detail-key">核心附加要求</span><span class="detail-val">DoC + 可追溯性标识 + 技术文件10年存档 + 欧代</span></div><div class="detail-row"><span class="detail-key">费用</span><span class="detail-val">DoC自我声明（无须公告机构），检测+文件成本</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="toy-05"><div class="item-body"><div class="item-title-row"><span class="item-title">加州 AB 2998 / PFAS 禁令</span><div class="badges"><span class="badge s-enforced">2023年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">加州AB 2998（2023年1月生效）：禁止在儿童产品（含玩具、喂养用品、床垫）中使用PFAS（全氟和多氟烷基物质）。2026年更多州（纽约、华盛顿等）跟进，实质上成为美国国家层面要求。</div><div class="item-details"><div class="detail-row"><span class="detail-key">触发</span><span class="detail-val">儿童产品如含防水/防污涂层，须检测PFAS</span></div><div class="detail-row"><span class="detail-key">趋势</span><span class="detail-val">2026-2027年多州跟进，联邦立法PFA(提案中)</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="toy-06"><div class="item-body"><div class="item-title-row"><span class="item-title">加拿大 CCPSA / SOR/2011-17 玩具法规</span><div class="badges"><span class="badge s-enforced">2011年 已执行</span><span class="badge m-ca">CA</span></div></div><div class="item-desc">加拿大消费品安全法(CCPSA)下的玩具法规(SOR/2011-17)。参照ASTM F963和EN 71的技术要求，含机械/化学/可燃性三大块。加拿大标准通常以ASTM为基准，但须单独检测或出具加拿大版报告。</div><div class="item-details"><div class="detail-row"><span class="detail-key">关键</span><span class="detail-val">加拿大不接受简单的ASTM报告转证，须加拿大本地化</span></div><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">5-10工作日</span></div></div></div></div></div>
+
+</div>
+</section>
+
+
+<!-- ============================== 3. 食品接触材料 ============================== -->
+<section class="cat-section" id="cat-foodcontact">
+<div class="cat-head"><span class="icon">🍽️</span><h3>食品接触材料</h3><span class="count">6 项认证</span></div>
+<div class="checklist">
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="fcm-01"><div class="item-body"><div class="item-title-row"><span class="item-title">EU 1935/2004 框架法规</span><div class="badges"><span class="badge s-enforced">2004年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">欧盟食品接触材料与制品的基础框架法规。覆盖17大类FCM（塑料、陶瓷、玻璃、金属、纸及纸板、橡胶、硅胶等）。核心原则：不得向食品迁移危害健康的成分、不得改变食品成分/性状。</div><div class="item-details"><div class="detail-row"><span class="detail-key">覆盖</span><span class="detail-val">17类材料（塑料/陶瓷/金属/玻璃/纸/硅胶/涂层/橡胶等）</span></div><div class="detail-row"><span class="detail-key">DoC</span><span class="detail-val">须出具符合性声明(Declaration of Compliance)</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="fcm-02"><div class="item-body"><div class="item-title-row"><span class="item-title">EU 10/2011 塑料食品接触材料</span><div class="badges"><span class="badge s-enforced">2011年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">EU 10/2011(PIM)是对1935/2004框架下塑料材料的专项法规。2026年第17次修订案已生效。规定了塑料材料的总迁移限量(OML≤10 mg/dm²)和特定迁移限量(SML)，以及1,100+核准物质正面清单(Union List)。</div><div class="item-details"><div class="detail-row"><span class="detail-key">2026修订</span><span class="detail-val">第17次修订案(2026年初生效)，新增/移除核准物质</span></div><div class="detail-row"><span class="detail-key">检测</span><span class="detail-val">总迁移OML+特定迁移SML+感官测试</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="fcm-03"><div class="item-body"><div class="item-title-row"><span class="item-title">FDA 食品接触材料（21 CFR 175-178）</span><div class="badges"><span class="badge s-enforced">1958年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">美国FDA食品接触物质法规体系：21 CFR Part 175（胶黏剂/涂层）、Part 176（纸及纸板）、Part 177（聚合物）、Part 178（助剂/添加剂）。采用"FCN食品接触物质通知"制度而非正面清单，须检测物质在食品模拟液中的迁移量。</div><div class="item-details"><div class="detail-row"><span class="detail-key">核心</span><span class="detail-val">每种原料须在FDA注册/列入FCN通知或GRAS</span></div><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">FCN通知审批120天</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="fcm-04"><div class="item-body"><div class="item-title-row"><span class="item-title">德国 LFGB 食品接触材料</span><div class="badges"><span class="badge s-enforced">2005年 已执行</span><span class="badge m-eu">EU（德国）</span></div></div><div class="item-desc">德国《食品与饲料法典》(LFGB)第30+31条。在EU 1935/2004基础上增加了更严格的德国本地要求（如感官测试——无异味/无味道传递），尤其对硅胶、三聚氰胺、陶瓷、竹纤维等材料的管控比EU通用法规更严格。</div><div class="item-details"><div class="detail-row"><span class="detail-key">独有要求</span><span class="detail-val">感官测试（3人专家组盲测）+比EU更严的迁移限量</span></div><div class="detail-row"><div class="detail-key">适用</div><span class="detail-val">出口德国及德语区(奥地利/瑞士)</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="fcm-05"><div class="item-body"><div class="item-title-row"><span class="item-title">法国 DGCCRF 食品接触材料</span><div class="badges"><span class="badge s-enforced">1992年 已执行</span><span class="badge m-eu">EU（法国）</span></div></div><div class="item-desc">法国竞争、消费和反欺诈总局(DGCCRF)对食品接触材料的补充要求。对橡胶、硅胶、铝、不锈钢、纸板等有额外的专项规定，要求比EU通用法规更细化，尤其是矿物油(MOAH/MOSH)迁移限制。</div><div class="item-details"><div class="detail-row"><span class="detail-key">法国特色</span><span class="detail-val">矿物油MOAH/MOSH专项管控（纸板类FCM首要关注）</span></div><div class="detail-row"><div class="detail-key">建议</span><span class="detail-val">出口法国须叠加1935/2004 + DGCCRF专项要求</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="fcm-06"><div class="item-body"><div class="item-title-row"><span class="item-title">NSF 认证（水处理/食品设备）</span><div class="badges"><span class="badge s-market">行业强制</span><span class="badge m-us">US</span></div></div><div class="item-desc">美国国家卫生基金会(NSF)认证。适用于饮水处理设备、食品加工设备、管道材料等与饮用水或食品直接接触的产品。虽非法定，但美国水务部门、餐厅/食品工厂均要求NSF认证产品。</div><div class="item-details"><div class="detail-row"><span class="detail-key">标准</span><span class="detail-val">NSF/ANSI 61（饮用水）、NSF/ANSI 51（食品设备）</span></div><div class="detail-row"><span class="detail-key">有效期</span><span class="detail-val">5年，每年跟踪审查</span></div></div></div></div></div>
+
+</div>
+</section>
+
+
+<!-- ============================== 4. 化妆品及个人护理 ============================== -->
+<section class="cat-section" id="cat-cosmetics">
+<div class="cat-head"><span class="icon">💄</span><h3>化妆品及个人护理</h3><span class="count">5 项认证</span></div>
+<div class="checklist">
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="cos-01"><div class="item-body"><div class="item-title-row"><span class="item-title">EU 1223/2009 化妆品法规</span><div class="badges"><span class="badge s-enforced">2013年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">欧盟化妆品法规EC 1223/2009（2013年7月全面实施）。核心要求：(1)指定欧盟负责人(RP) (2)在CPNP平台（化妆品通报门户）完成产品备案 (3)产品信息档案(PIF)保存10年 (4)CPSR化妆品产品安全报告由持证安全评估员签署。</div><div class="item-details"><div class="detail-row"><span class="detail-key">关键平台</span><span class="detail-val">CPNP化妆品通报门户（上市前必须备案）</span></div><div class="detail-row"><span class="detail-key">PIF</span><span class="detail-val">产品信息档案含CPSR安全评估，保存10年</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="cos-02"><div class="item-body"><div class="item-title-row"><span class="item-title">FDA MoCRA 化妆品现代化法案</span><div class="badges"><span class="badge s-enforced">2023年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">美国《2022化妆品法规现代化法案》(MoCRA)，自2023年12月29日起生效。重大变化：(1)生产设施必须在FDA注册 (2)每种化妆品须在FDA进行产品列名(Listing) (3)强制严重不良事件报告(15日内) (4)须指定美国负责人。这是1938年以来美国化妆品法规最大变革。</div><div class="item-details"><div class="detail-row"><span class="detail-key">注册DDL</span><span class="detail-val">已强制。2024年7月1日前完成注册+列名</span></div><div class="detail-row"><span class="detail-key">新要求</span><span class="detail-val">设施注册(2年续) + 产品列名(每年) + 不良事件报告</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="cos-03"><div class="item-body"><div class="item-title-row"><span class="item-title">FDA VCRP 化妆品自愿注册（旧制）</span><div class="badges"><span class="badge s-enforced">已废止</span><span class="badge m-us">US</span></div></div><div class="item-desc">FDA化妆品自愿注册计划(VCRP)已于2023年12月被MoCRA取代。所有原VCRP注册自动转换为MoCRA注册。此条目作为历史参考——确认贵司/客户已从VCRP迁移至MoCRA强制注册。</div><div class="item-details"><div class="detail-row"><span class="detail-key">⚠ 注意</span><span class="detail-val">VCRP已废止。不要再使用旧流程——直接走MoCRA注册</span></div><div class="detail-row"><span class="detail-key">迁移</span><span class="detail-val">原VCRP注册自动转MoCRA但须补充信息</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="cos-04"><div class="item-body"><div class="item-title-row"><span class="item-title">加拿大化妆品通报(CNF)</span><div class="badges"><span class="badge s-enforced">1975年 已执行</span><span class="badge m-ca">CA</span></div></div><div class="item-desc">加拿大化妆品法规(Cosmetic Regulations)要求：化妆品首次在加拿大销售后10日内向Health Canada提交化妆品通报表(CNF)，包含配方、成分浓度、制造商信息。类似EU CPNP备案制度。</div><div class="item-details"><div class="detail-row"><span class="detail-key">时效</span><span class="detail-val">上市后10日内通报（非预先批准，但须通报）</span></div><div class="detail-row"><span class="detail-key">费用</span><span class="detail-val">免费通报</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="cos-05"><div class="item-body"><div class="item-title-row"><span class="item-title">ISO 22716 GMP 化妆品良好生产规范</span><div class="badges"><span class="badge s-market">市场强制</span><span class="badge m-both">全球</span></div></div><div class="item-desc">ISO 22716:2007（2024年修订）。化妆品GMP国际标准。欧盟1223/2009明确要求化妆品生产符合GMP（以ISO 22716为公认标准）。虽非法条本身，但EU公告机构审核化妆品工厂时将此视为强制条件。</div><div class="item-details"><div class="detail-row"><span class="detail-key">属性</span><span class="detail-val">EU法规引用（非直接法定，但审核时等同强制）</span></div><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">认证6-12个月</span></div></div></div></div></div>
+
+</div>
+</section>
+
+
+<!-- ============================== 5. 医疗器械 ============================== -->
+<section class="cat-section" id="cat-medical">
+<div class="cat-head"><span class="icon">🏥</span><h3>医疗器械</h3><span class="count">6 项认证</span></div>
+<div class="checklist">
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="med-01"><div class="item-body"><div class="item-title-row"><span class="item-title">EU MDR 2017/745 医疗器械法规</span><div class="badges"><span class="badge s-enforced">2021年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">替代旧MDD指令的新规，2021年5月全面生效（过渡期至2027/2028年）。大幅提高了临床证据要求、上市后监督(PMS)、唯一器械标识(UDI)及供应链透明度。所有类别医疗器械均须按MDR重新认证。</div><div class="item-details"><div class="detail-row"><span class="detail-key">分类</span><span class="detail-val">Class I / IIa / IIb / III，风险越高要求越严</span></div><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">Class I: 3-6月; Class III: 12-24月</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="med-02"><div class="item-body"><div class="item-title-row"><span class="item-title">FDA 510(k) 上市前通知</span><div class="badges"><span class="badge s-enforced">1976年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">美国医疗器械最常用的上市路径（适用Class II及部分Class I设备）。要求证明新器械与已合法上市的"对比器械"(predicate device)实质等同(Substantial Equivalence)。比EU MDR的临床要求轻，但FDA审核日趋严格。</div><div class="item-details"><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">FDA 90天法定审核 + 实际平均6-12月</span></div><div class="detail-row"><span class="detail-key">费用</span><span class="detail-val">2026年标准费用$24,335（小企业$6,084）</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="med-03"><div class="item-body"><div class="item-title-row"><span class="item-title">FDA PMA 上市前批准</span><div class="badges"><span class="badge s-enforced">1976年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">Class III高风险医疗器械（如心脏起搏器、植入物）须走PMA路径，是FDA最严格的审批流程。要求提交完整临床数据证明安全性和有效性。普通器械走510(k)即可，PMA极少触及。</div><div class="item-details"><div class="detail-row"><span class="detail-key">适用</span><span class="detail-val">仅Class III高风险器械（不到10%的器械品类）</span></div><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">FDA 180天审核 + 实际12-36月</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="med-04"><div class="item-body"><div class="item-title-row"><span class="item-title">EU IVDR 2017/746 体外诊断法规</span><div class="badges"><span class="badge s-enforced">2022年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">体外诊断医疗器械法规(IVDR)，替代旧IVDD指令。2022年5月生效（过渡期至2027年12月）。大幅扩展了需要公告机构介入的IVD产品范围（从IVDD的~8%升至IVDR的~80%）。</div><div class="item-details"><div class="detail-row"><span class="detail-key">核心变化</span><span class="detail-val">所需公告机构认证的产品比例从8%→80%</span></div><div class="detail-row"><span class="detail-key">过渡期</span><span class="detail-val">D类: 2027年5月; C类: 2028年5月</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="med-05"><div class="item-body"><div class="item-title-row"><span class="item-title">FDA 工厂注册与器械列名</span><div class="badges"><span class="badge s-enforced">1976年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">所有在美国销售医疗器械的企业（含海外制造商/合同制造商）须在FDA完成Establishment Registration（工厂注册）和Device Listing（器械列名），每年10月1日至12月31日续期。不续期将导致产品从美国市场移除。</div><div class="item-details"><div class="detail-row"><span class="detail-key">注册DDL</span><span class="detail-val">每年10.1 - 12.31续期（年度周期）</span></div><div class="detail-row"><span class="detail-key">费用</span><span class="detail-val">2026财年$7,653/工厂</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="med-06"><div class="item-body"><div class="item-title-row"><span class="item-title">ISO 13485 医疗器械质量管理体系</span><div class="badges"><span class="badge s-market">市场强制</span><span class="badge m-both">全球</span></div></div><div class="item-desc">医疗器械行业专属的ISO质量管理体系标准(ISO 13485:2016)。EU MDR和FDA QSR(21 CFR Part 820)均以此为基础。虽非法条本身，但EU公告机构和FDA检查官均以ISO 13485为审核框架，实质上等同强制。</div><div class="item-details"><div class="detail-row"><span class="detail-key">与ISO 9001关系</span><span class="detail-val">ISO 13485在ISO 9001基础上增加医疗器械专项要求</span></div><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">初次认证6-12个月，3年换证</span></div></div></div></div></div>
+
+</div>
+</section>
+
+
+<!-- ============================== 6. 家居用品及灯具 ============================== -->
+<section class="cat-section" id="cat-home">
+<div class="cat-head"><span class="icon">🏠</span><h3>家居用品及灯具</h3><span class="count">9 项认证</span></div>
+<div class="checklist">
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="home-01"><div class="item-body"><div class="item-title-row"><span class="item-title">UL 1598 / UL 153 灯具安全</span><div class="badges"><span class="badge s-market">市场强制</span><span class="badge m-us">US</span></div></div><div class="item-desc">UL 1598（固定式灯具）、UL 153（便携式灯具）——美国灯具安全强制遵循标准。所有在美国销售的灯具须通过NRTL（UL/ETL/CSA任一）认证，否则无法上架Amazon/零售商，保险公司拒保。</div><div class="item-details"><div class="detail-row"><span class="detail-key">NRTL</span><span class="detail-val">UL/ETL/CSA/MET任一NRTL出具认证报告即可</span></div><div class="detail-row"><span class="detail-key">灯具分类</span><span class="detail-val">固定式(UL 1598) / 便携式(UL 153) / 轨道灯(UL 1574)</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="home-02"><div class="item-body"><div class="item-title-row"><span class="item-title">DLC 灯具设计联盟认证</span><div class="badges"><span class="badge s-market">行业强制</span><span class="badge m-us">US</span></div></div><div class="item-desc">DesignLights Consortium认证，针对商用LED灯具的能效与性能标准。美国90%以上的电力公司(utility)的灯具补贴/折扣计划要求产品通过DLC认证。不通过则失去大部分B2B/政府采购市场。</div><div class="item-details"><div class="detail-row"><span class="detail-key">级别</span><span class="detail-val">Standard / Premium两级，Premium光效更高</span></div><div class="detail-row"><span class="detail-key">适用范围</span><span class="detail-val">商用/工业/户外LED灯具（非家用灯泡）</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="home-03"><div class="item-body"><div class="item-title-row"><span class="item-title">EN 60598 灯具安全（欧盟）</span><div class="badges"><span class="badge s-enforced">1996年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">欧盟灯具安全标准EN 60598系列（基于IEC 60598）。分EN 60598-1（通用要求）和各子类（固定式/便携式/路灯/应急灯等）。须结合LVD+EMC+ErP triple认证。</div><div class="item-details"><div class="detail-row"><span class="detail-key">标准</span><span class="detail-val">EN 60598-1 + 子类（EN 60598-2-X）</span></div><div class="detail-row"><span class="detail-key">三重认证</span><span class="detail-val">LVD(安全)+EMC(电磁兼容)+ErP(能效)</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="home-04"><div class="item-body"><div class="item-title-row"><span class="item-title">加州 Title 20 (CEC) 家电能效</span><div class="badges"><span class="badge s-enforced">1976年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">加州能源委员会(CEC) Title 20强制能效认证。覆盖家用电器（冰箱、空调、热水器、洗衣机等）、充电器、灯具等。须在CEC MAEDBS注册并满足最低能效标准，为美国最严格州级能效法规。</div><div class="item-details"><div class="detail-row"><span class="detail-key">注册</span><span class="detail-val">Modernized Appliance Efficiency Database System</span></div><div class="detail-row"><span class="detail-key">覆盖</span><span class="detail-val">家电/充电器/灯具/电机/变压器等</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="home-05"><div class="item-body"><div class="item-title-row"><span class="item-title">GREENGUARD 室内空气质量认证</span><div class="badges"><span class="badge s-voluntary">自愿性</span><span class="badge m-us">US</span></div></div><div class="item-desc">UL环境部推出的室内低排放产品认证。检测家具/建材/家居用品的VOCs/甲醛等室内空气污染物排放量。LEED绿色建筑加分项。美国高端家居品牌/酒店/办公市场要求的差异化认证。</div><div class="item-details"><div class="detail-row"><span class="detail-key">等级</span><span class="detail-val">GREENGUARD / GREENGUARD Gold（学校/医疗级更严）</span></div><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">2-4个月检测+认证</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="home-06"><div class="item-body"><div class="item-title-row"><span class="item-title">16 CFR Part 1632/1633 床垫可燃性</span><div class="badges"><span class="badge s-enforced">1973年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">美国联邦法规(16 CFR)对床垫/床垫套可燃性的强制要求。Part 1632（香烟引燃测试）、Part 1633（明火引燃测试，2007年升级）。所有在美国销售的床垫必须通过。</div><div class="item-details"><div class="detail-row"><span class="detail-key">1632 vs 1633</span><span class="detail-val">1632(香烟)→1633(明火，更严格，2007年新增)</span></div><div class="detail-row"><span class="detail-key">费用</span><span class="detail-val">约$2,000-5,000/型号</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="home-07"><div class="item-body"><div class="item-title-row"><span class="item-title">TB 117-2013 软体家具可燃性</span><div class="badges"><span class="badge s-enforced">2015年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">加州技术公告TB 117-2013，强制要求软体家具（沙发、椅子等）的填充材料通过阴燃测试。虽为加州法规，但实质上已成为美国软体家具行业的国家默认标准。</div><div class="item-details"><div class="detail-row"><span class="detail-key">与旧版区别</span><span class="detail-val">TB 117-2013从面料测试改为填充材料测试（更科学）</span></div><div class="detail-row"><span class="detail-key">标签</span><span class="detail-val">每件产品须缝制TB 117合规标签</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="home-08"><div class="item-body"><div class="item-title-row"><span class="item-title">EU 2019/2020 光源/灯具能效标签</span><div class="badges"><span class="badge s-enforced">2021年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">EU 2019/2015（能效标签）+ 2019/2020（生态设计），2021年9月生效。所有光源和灯具须按A-G新能效等级标注并在EPREL注册。最高效的A级最初刻意留空以鼓励后续提升。</div><div class="item-details"><div class="detail-row"><span class="detail-key">标签变化</span><span class="detail-val">A+/A++/A+++ → 回归A-G简单分级(2021)</span></div><div class="detail-row"><span class="detail-key">注册</span><span class="detail-val">EPREL数据库，每个产品型号单独注册</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="home-09"><div class="item-body"><div class="item-title-row"><span class="item-title">ANSI/BIFMA 办公家具标准</span><div class="badges"><span class="badge s-market">行业强制</span><span class="badge m-us">US</span></div></div><div class="item-desc">美国办公家具制造商协会(BIFMA)标准（ANSI/BIFMA X5系列）。覆盖办公椅、办公桌、文件柜、屏风等。虽非法定，但美国政府(GSA)、大型企业采购办公家具均要求BIFMA认证/BIFMA Compliance。</div><div class="item-details"><div class="detail-row"><span class="detail-key">标准</span><span class="detail-val">X5.1（办公椅）、X5.5（办公桌）、X5.9（储物柜）等</span></div><div class="detail-row"><span class="detail-key">检测</span><span class="detail-val">结构强度/耐久性/稳定性等全套物理性能</span></div></div></div></div></div>
+
+</div>
+</section>
+
+
+<!-- ============================== 7. 宠物用品 ============================== -->
+<section class="cat-section" id="cat-pet">
+<div class="cat-head"><span class="icon">🐾</span><h3>宠物用品</h3><span class="count">6 项认证</span></div>
+<div class="checklist">
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="pet-01"><div class="item-body"><div class="item-title-row"><span class="item-title">CE 宠物用品通用认证</span><div class="badges"><span class="badge s-enforced">EU通用</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">宠物用品（非食品/非药品类，如牵引绳、宠物玩具、窝垫、服装等）进入欧盟须满足GPSR(通用产品安全法规)和CE框架（如含电子元件）。核心：物理安全（无锐边/小零件脱落风险）+化学安全(REACH有害物质限量)。</div><div class="item-details"><div class="detail-row"><span class="detail-key">GPSR要求</span><span class="detail-val">指定欧代+安全标签+可追溯性（2024.12已强制）</span></div><div class="detail-row"><span class="detail-key">检测</span><span class="detail-val">物理机械安全+REACH化学+邻苯(若软塑件含)</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="pet-02"><div class="item-body"><div class="item-title-row"><span class="item-title">FDA 宠物食品/零食</span><div class="badges"><span class="badge s-enforced">1938年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">若出口宠物食品/零食/营养补充剂至美国，须满足FDA对动物饲料的监管要求（21 CFR Part 500-599）。包括工厂注册(Food Facility Registration)、成分安全性、标签合规（AAFCO标准）。</div><div class="item-details"><div class="detail-row"><span class="detail-key">关键</span><span class="detail-val">FDA工厂注册(2年续) + 产品标签AAFCO合规</span></div><div class="detail-row"><span class="detail-key">FSMA</span><span class="detail-val">《食品安全现代化法案》预防性控制要求也适用</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="pet-03"><div class="item-body"><div class="item-title-row"><span class="item-title">EU 1069/2009 动物副产品法规</span><div class="badges"><span class="badge s-enforced">2009年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">若出口含动物衍生材料（如牛皮咬胶/生皮咀嚼零食/鹿角等）的宠物咀嚼用品至欧盟，须满足EU动物副产品法规(EU 1069/2009 + EU 142/2011)。须从中国海关获得卫生证书并通报欧盟TRACES系统。</div><div class="item-details"><div class="detail-row"><span class="detail-key">适用</span><span class="detail-val">含动物源性材料的宠物咀嚼用品/咬胶</span></div><div class="detail-row"><span class="detail-key">文件</span><span class="detail-val">出口国卫生证书+TRACES通报+工厂注册批准</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="pet-04"><div class="item-body"><div class="item-title-row"><span class="item-title">亚马逊宠物用品合规</span><div class="badges"><span class="badge s-market">平台强制</span><span class="badge m-both">EU+US</span></div></div><div class="item-desc">Amazon对宠物用品类目（宠物食品/玩具/窝垫/美容工具等）有独立的合规审核。须上传：检测报告（物理+化学）+ 产品图片+包装标签+（如适用）FDA注册文件。2026年Amazon合规审核进一步收紧。</div><div class="item-details"><div class="detail-row"><span class="detail-key">关键</span><span class="detail-val">宠物玩具按ASTM F963/EN 71标准测试（参照儿童玩具）</span></div><div class="detail-row"><span class="detail-key">行动</span><span class="detail-val">登录Amazon Seller Central查看合规要求清单</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="pet-05"><div class="item-body"><div class="item-title-row"><span class="item-title">加州 Prop 65 宠物产品</span><div class="badges"><span class="badge s-enforced">1986年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">宠物用品在美国加州销售须注意Prop 65（65号提案）的标注要求。宠物玩具/窝垫/服饰若含列于Prop 65清单的致癌/生殖毒性化学物质（如铅、邻苯二甲酸酯、BPA等），须在包装或产品上标注警告。</div><div class="item-details"><div class="detail-row"><span class="detail-key">高频触发项</span><span class="detail-val">宠物玩具中的邻苯二甲酸酯/铅、塑料碗中的BPA</span></div><div class="detail-row"><span class="detail-key">建议</span><span class="detail-val">对软塑件宠物产品做Prop 65专项检测 + 标注合规评估</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="pet-06"><div class="item-body"><div class="item-title-row"><span class="item-title">EU 宠物食品法规 (EC) 767/2009</span><div class="badges"><span class="badge s-enforced">2010年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">欧盟宠物饲料市场准入法规(EC 767/2009)。规定宠物食品标签、声称、成分清单的详细要求。2025年新修订案进一步限制了部分添加剂的使用。</div><div class="item-details"><div class="detail-row"><span class="detail-key">适用</span><span class="detail-val">宠物主粮/零食/营养补充剂</span></div><div class="detail-row"><span class="detail-key">标签要求</span><span class="detail-val">完整的成分清单+添加剂+分析方法成分+净含量</span></div></div></div></div></div>
+
+</div>
+</section>
+
+
+<!-- ============================== 8. 运动户外 ============================== -->
+<section class="cat-section" id="cat-sports">
+<div class="cat-head"><span class="icon">⚽</span><h3>运动户外用品</h3><span class="count">6 项认证</span></div>
+<div class="checklist">
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="spt-01"><div class="item-body"><div class="item-title-row"><span class="item-title">CPSC 自行车/头盔安全标准</span><div class="badges"><span class="badge s-enforced">16 CFR Part 1512 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">美国联邦法规16 CFR Part 1512（自行车安全）、16 CFR Part 1203（自行车头盔安全）。所有在美国销售的自行车/头盔须通过CPSC认证并出具GCC，2026年7月8日起须eFiling电子申报。</div><div class="item-details"><div class="detail-row"><span class="detail-key">强制</span><span class="detail-val">自行车/头盔是CPSC法定监管产品，GCC+eFiling必须</span></div><div class="detail-row"><span class="detail-key">DDL</span><span class="detail-val">2026.07.08 eFiling全面强制</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="spt-02"><div class="item-body"><div class="item-title-row"><span class="item-title">EN 1078 / EN 1077 头盔安全</span><div class="badges"><span class="badge s-enforced">EU强制</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">EN 1078（自行车/滑板/轮滑头盔）、EN 1077（滑雪/单板头盔）。属于PPE法规(EU 2016/425)下的个人防护用品，须CE认证+公告机构EU型式检验。</div><div class="item-details"><div class="detail-row"><span class="detail-key">法规</span><span class="detail-val">PPE法规(EU 2016/425)，须公告机构审核</span></div><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">6-8周（含公告机构审核）</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="spt-03"><div class="item-body"><div class="item-title-row"><span class="item-title">ASTM F2040 / F2032 滑雪/自行车头盔</span><div class="badges"><span class="badge s-market">行业强制</span><span class="badge m-us">US</span></div></div><div class="item-desc">除CPSC联邦标准外，美国滑雪/自行车头盔行业还有ASTM专项标准：ASTM F2040（滑雪头盔）、ASTM F2032（自行车头盔加强版）。多数品牌/零售商要求同时满足CPSC+ASTM双重标准。</div><div class="item-details"><div class="detail-row"><span class="detail-key">与CPSC关系</span><span class="detail-val">CPSC是法定底线，ASTM是行业更高标准</span></div><div class="detail-row"><span class="detail-key">建议</span><span class="detail-val">运动头盔产品双重检测(CPSC+ASTM)更稳妥</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="spt-04"><div class="item-body"><div class="item-title-row"><span class="item-title">健身器材安全标准 EN 957 / ASTM F2276</span><div class="badges"><span class="badge s-market">行业强制</span><span class="badge m-both">EU+US</span></div></div><div class="item-desc">EN 957（欧盟固定式健身器材安全标准）分多个子类（跑步机/力量器材/椭圆机等）。美国对应ASTM F2276系列。虽非法定强制，但美国/欧洲健身房运营商、电商平台均要求健身器材通过此类标准检测。</div><div class="item-details"><div class="detail-row"><span class="detail-key">EU</span><span class="detail-val">EN 957系列（各子类）+ CE-LVD（如含电源）</span></div><div class="detail-row"><span class="detail-key">US</span><span class="detail-val">ASTM F2276 + UL 1647（如含电机）</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="spt-05"><div class="item-body"><div class="item-title-row"><span class="item-title">户外用品/帐篷可燃性 CPAI-84</span><div class="badges"><span class="badge s-enforced">1976年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">CPAI-84是美国帐篷及户外遮蔽物可燃性的强制标准（被16 CFR引用）。所有在美国销售的帐篷/天幕/户外遮蔽物必须通过CPAI-84可燃性测试并出具GCC。</div><div class="item-details"><div class="detail-row"><span class="detail-key">标准</span><span class="detail-val">CPAI-84（帐篷可燃性）→ 美国联邦法规引用</span></div><div class="detail-row"><span class="detail-key">GCC</span><span class="detail-val">须出具GCC，2026.07.08起eFiling提交</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="spt-06"><div class="item-body"><div class="item-title-row"><span class="item-title">水上运动器材 / PFD 救生衣</span><div class="badges"><span class="badge s-enforced">USCG强制</span><span class="badge m-us">US</span></div></div><div class="item-desc">美国海岸警卫队(USCG)对救生衣(Personal Flotation Device)的强制认证要求。PFD须通过USCG批准（须在USCG认可的实验室按46 CFR Subpart 164.015测试并提交审批）。非救生衣类水上器材（如冲浪板/充气艇）须满足CPSC一般安全要求。</div><div class="item-details"><div class="detail-row"><span class="detail-key">PFD等级</span><span class="detail-val">Type I / II / III / IV / V（浮力不同，用途不同）</span></div><div class="detail-row"><span class="detail-key">非PFD</span><span class="detail-val">冲浪板/充气艇等非救生器材 → CPSC + GPSR(EU)</span></div></div></div></div></div>
+
+</div>
+</section>
+
+
+<!-- ============================== 9. 珠宝饰品 ============================== -->
+<section class="cat-section" id="cat-jewelry">
+<div class="cat-head"><span class="icon">💍</span><h3>珠宝饰品</h3><span class="count">6 项认证</span></div>
+<div class="checklist">
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="jwl-01"><div class="item-body"><div class="item-title-row"><span class="item-title">CPSIA 儿童珠宝铅限量</span><div class="badges"><span class="badge s-enforced">2008年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">CPSIA对儿童珠宝(面向12岁及以下)的铅限量要求：总铅≤100ppm（基材/涂层）。2026年CPSC已多次召回超标儿童珠宝，是执法重点。</div><div class="item-details"><div class="detail-row"><span class="detail-key">标准</span><span class="detail-val">ASTM F2923（儿童珠宝安全标准，被CPSIA引用）</span></div><div class="detail-row"><span class="detail-key">检测</span><span class="detail-val">总铅(100ppm) + 镉(75ppm) + 镍释放(成人珠宝)</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="jwl-02"><div class="item-body"><div class="item-title-row"><span class="item-title">EU REACH 珠宝镍释放</span><div class="badges"><span class="badge s-enforced">2009年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">REACH Annex XVII第27条：与皮肤长期或直接接触的金属首饰（耳环、项链、手镯、戒指等），镍释放量须 < 0.5μg/cm²/week（EN 1811检测）。此外铅含量（REACH Annex XVII第63条）：首饰中铅≤0.05%。</div><div class="item-details"><div class="detail-row"><span class="detail-key">检测</span><span class="detail-val">EN 1811（镍释放）+ EN 12472（磨损模拟）+ 总铅</span></div><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">5-7工作日</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="jwl-03"><div class="item-body"><div class="item-title-row"><span class="item-title">加州 Prop 65 珠宝</span><div class="badges"><span class="badge s-enforced">1986年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">Prop 65对珠宝的管控更为严格：铅（金属部件≤300ppm即触发"不显著风险"需标注警告，加州DOJ已发起大量珠宝Prop 65诉讼（60天通知））、镉、邻苯二甲酸酯等。实质上在美国全境产生连锁效应。</div><div class="item-details"><div class="detail-row"><span class="detail-key">执法</span><span class="detail-val">Prop 65诉讼是加州常发官司类别，珠宝为高发品类</span></div><div class="detail-row"><span class="detail-key">建议</span><span class="detail-val">所有出口USA的珠宝一律做Prop 65 300+项检测</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="jwl-04"><div class="item-body"><div class="item-title-row"><span class="item-title">贵金属印记 (Hallmarking)</span><div class="badges"><span class="badge s-enforced">英国强制</span><span class="badge m-eu">EU/UK</span></div></div><div class="item-desc">英国Hallmarking Act 1973要求所有贵金属珠宝（金/银/铂/钯）须送至英国检验局(Assay Office)打标印记后方可描述为"Gold/Silver"销售。欧盟各国多数也有类似的贵金属纯度印记制度（如法国Poinçon）。</div><div class="item-details"><div class="detail-row"><span class="detail-key">英国</span><span class="detail-val">强制Hallmark（4个标记：Sponsor+金属+纯度+检验局）</span></div><div class="detail-row"><span class="detail-key">EU</span><span class="detail-val">各国不同，法国/意大利/德国均有本地印记要求</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="jwl-05"><div class="item-body"><div class="item-title-row"><span class="item-title">FTC 珠宝指南 (美国)</span><div class="badges"><span class="badge s-enforced">1957年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">美国联邦贸易委员会(FTC)《珠宝、贵金属与锡铅合金行业指南》(16 CFR Part 23)。规范珠宝的标注、描述和广告宣称（如"14K Gold Plated"vs"Gold Filled"vs"Vermeil"的法律定义差异）。违反FTC指南将被认定为虚假广告/欺诈。</div><div class="item-details"><div class="detail-row"><span class="detail-key">关键</span><span class="detail-val">标注"Gold"须至少10K；"Platinum"须≥95%纯度</span></div><div class="detail-row"><span class="detail-key">执法</span><span class="detail-val">FTC可对虚假标注处以罚款和强制召回</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="jwl-06"><div class="item-body"><div class="item-title-row"><span class="item-title">FTC 金刚石/宝石指南</span><div class="badges"><span class="badge s-enforced">1957年 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">16 CFR Part 23对钻石/宝石的专项规定：合成钻石必须用"laboratory-grown"/"[manufacturer name]-created"等限定词前缀，单独用"diamond"默认为天然钻石。禁止虚假处理宣称（如辐照改色未披露）。</div><div class="item-details"><div class="detail-row"><span class="detail-key">FTC规则</span><span class="detail-val">合成钻石 | 天然钻石 须明确标识区分</span></div><div class="detail-row"><div class="detail-key">2018修订</span><span class="detail-val">将"天然"定义从钻石移除（因争议），但区分原则不变</span></div></div></div></div></div>
+
+</div>
+</section>
+
+
+<!-- ============================== 10. 个人防护用品 PPE ============================== -->
+<section class="cat-section" id="cat-ppe">
+<div class="cat-head"><span class="icon">🛡️</span><h3>个人防护用品 (PPE)</h3><span class="count">5 项认证</span></div>
+<div class="checklist">
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="ppe-01"><div class="item-body"><div class="item-title-row"><span class="item-title">EU PPE 法规 2016/425</span><div class="badges"><span class="badge s-enforced">2018年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">EU 2016/425替代旧PPE指令89/686/EEC，2018年4月全面实施。覆盖安全头盔、安全手套、防护服、防护鞋、呼吸防护、安全带等所有PPE。分三类：Cat I(简单防护)/II(中等)/III(致命风险，须公告机构年度审核)。</div><div class="item-details"><div class="detail-row"><span class="detail-key">Cat III</span><span class="detail-val">须EU公告机构EU型式检验+年度监督审核(如呼吸器/安全带)</span></div><div class="detail-row"><span class="detail-key">Cat I</span><span class="detail-val">自我声明(如普通工作手套)</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="ppe-02"><div class="item-body"><div class="item-title-row"><span class="item-title">NIOSH 呼吸防护认证（美国）</span><div class="badges"><span class="badge s-enforced">42 CFR Part 84 已执行</span><span class="badge m-us">US</span></div></div><div class="item-desc">美国国家职业安全卫生研究所(NIOSH)对呼吸防护器（N95口罩等）的强制认证。42 CFR Part 84。所有在美国销售的呼吸防护产品须通过NIOSH认证并获批准号(TC-xx)。</div><div class="item-details"><div class="detail-row"><span class="detail-key">N95</span><span class="detail-val">NIOSH效率≥95%的颗粒物过滤标准（非口罩类型全称）</span></div><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">6-12月（NIOSH审核严格，通过率低）</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="ppe-03"><div class="item-body"><div class="item-title-row"><span class="item-title">OSHA 合规 / ANSI 标准（美国）</span><div class="badges"><span class="badge s-market">行业强制</span><span class="badge m-us">US</span></div></div><div class="item-desc">美国职业安全与健康管理局(OSHA)要求工作场所使用的PPE须符合ANSI（美国国家标准学会）制定的性能标准。本身不直接认证产品，但OSHA检查员工厂时检查PPE是否合规。ANSI Z87.1(安全眼镜)、ANSI ISEA 105(手套抗切割等级)等。</div><div class="item-details"><div class="detail-row"><span class="detail-key">安全眼镜</span><span class="detail-val">ANSI Z87.1 (OSHA引用为强制)</span></div><div class="detail-row"><span class="detail-key">手套</span><span class="detail-val">ANSI/ISEA 105（抗切割等级A1-A9）</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="ppe-04"><div class="item-body"><div class="item-title-row"><span class="item-title">EN 149 防护口罩（欧盟）</span><div class="badges"><span class="badge s-enforced">2001年 已执行</span><span class="badge m-eu">EU</span></div></div><div class="item-desc">欧盟防护口罩标准EN 149:2001+A1:2009。分三类：FFP1(过滤效率≥80%)、FFP2(≥94%)、FFP3(≥99%)。属PPE Cat III（须公告机构型式检验+年度监督）。COVID后EU短期许可了一些紧急通道，现已恢复常态。</div><div class="item-details"><div class="detail-row"><span class="detail-key">FFP2≈N95</span><span class="detail-val">FFP2≥94% | N95≥95% | KN95≥95%（名称来源不同）</span></div><div class="detail-row"><span class="detail-key">周期</span><span class="detail-val">公告机构审核4-8月 + CE文档准备</span></div></div></div></div></div>
+
+<div class="item"><div class="item-top"><input type="checkbox" class="item-check" data-id="ppe-05"><div class="item-body"><div class="item-title-row"><span class="item-title">ANSI/ISEA 107 高可见度服装</span><div class="badges"><span class="badge s-market">行业强制</span><span class="badge m-us">US</span></div></div><div class="item-desc">ANSI/ISEA 107-2020高可见度安全服装标准（被OSHA及FHWA等联邦机构引用）。反光背心/高可见度工作服须通过此标准认证并标注ANSI 107类型(Class 1/2/3)。</div><div class="item-details"><div class="detail-row"><span class="detail-key">分级</span><span class="detail-val">Class 1(最低) / 2(中级) / 3(公路最高) + Type O/R/P</span></div><div class="detail-row"><span class="detail-key">检测</span><span class="detail-val">反光材料返回系数+背景材料色值+洗涤耐久</span></div></div></div></div></div>
+
+</div>
+</section>
+
+
+<!-- ============================== 速查总表 ============================== -->
+<section id="quick-table" style="scroll-margin-top: 20px;">
+<div class="cat-head">
+  <span class="icon">📊</span><h3>速查总表：品类 → 所需核心认证</h3>
+  <span class="count">一页对比</span>
+</div>
+<div style="overflow-x: auto; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+<table class="quick-table">
+<thead>
+<tr><th>品类</th><th>欧盟核心认证</th><th>美国核心认证</th><th>加拿大</th><th>强制程度</th></tr>
+</thead>
+<tbody>
+<tr><td>电子电器（非无线）</td><td>CE(LVD+EMC)+RoHS+WEEE</td><td>FCC-SDOC+UL/ETL</td><td>CSA/ISED-SDOC</td><td>🔴 全部强制</td></tr>
+<tr><td>电子电器（无线）</td><td>CE(RED)+RoHS+WEEE</td><td>FCC-ID+UL/ETL</td><td>ISED-IDA+CSA</td><td>🔴 全部强制</td></tr>
+<tr><td>灯具</td><td>CE(LVD+EMC)+ErP+EN 60598+EPREL</td><td>UL/ETL+DLC+Energy Star+DOE</td><td>CSA</td><td>🔴 全部强制 + 🟡 DLC/ES为行业强制</td></tr>
+<tr><td>玩具（普通）</td><td>EN 71-1/2/3+CE+TSD</td><td>ASTM F963+CPC(GCC)</td><td>SOR/2011-17+CCPSA</td><td>🔴 全部强制</td></tr>
+<tr><td>儿童产品（非玩具）</td><td>GPSR+REACH</td><td>CPSIA(铅+邻苯)+CPC</td><td>CCPSA</td><td>🔴 全部强制</td></tr>
+<tr><td>食品接触材料（塑料）</td><td>1935/2004+10/2011+LFGB(德国)</td><td>FDA 21 CFR 175-178</td><td>—</td><td>🔴 全部强制</td></tr>
+<tr><td>食品接触材料（陶瓷/玻璃）</td><td>1935/2004+84/500/EEC(陶瓷)+LFGB</td><td>FDA CPG 7117.06/07</td><td>—</td><td>🔴 全部强制</td></tr>
+<tr><td>化妆品</td><td>1223/2009+CPNP+PIF+CPSR</td><td>MoCRA(工厂注册+产品列名)</td><td>化妆品通报CNF</td><td>🔴 全部强制</td></tr>
+<tr><td>医疗器械 Class I/II</td><td>MDR 2017/745+ISO 13485</td><td>510(k)+FDA注册列名+QSR</td><td>Medical Device Licence</td><td>🔴 全部强制</td></tr>
+<tr><td>家具（民用）</td><td>GPSR+REACH(化学品)</td><td>TB 117-2013(可燃)+16 CFR 1303(铅)</td><td>—</td><td>🟡 US强制可燃性</td></tr>
+<tr><td>家具（办公）</td><td>EN 1335(办公椅)+EN 527(办公桌)</td><td>ANSI/BIFMA+TB 117</td><td>—</td><td>🟡 US BIFMA为行业强制</td></tr>
+<tr><td>床垫</td><td>GPSR+BS 7177(UK可燃)</td><td>16 CFR Part 1632/1633</td><td>—</td><td>🔴 US强制</td></tr>
+<tr><td>宠物用品（非食品）</td><td>GPSR+REACH</td><td>CPSC+Prop 65</td><td>—</td><td>🔴 EU GPSR强制 + 🟡 US一般安全</td></tr>
+<tr><td>宠物食品/零食</td><td>767/2009+1069/2009(动物衍生)</td><td>FDA Facility Reg+AAFCO标签</td><td>—</td><td>🔴 全部强制</td></tr>
+<tr><td>自行车/头盔</td><td>EN 1078+PPE 2016/425</td><td>16 CFR Part 1512/1203+ASTM</td><td>—</td><td>🔴 全部强制</td></tr>
+<tr><td>健身器材</td><td>EN 957系列+CE(LVD如含电)</td><td>ASTM F2276+UL(如含电机)</td><td>—</td><td>🟡 行业强制</td></tr>
+<tr><td>珠宝（成人）</td><td>REACH(镍释放+铅)</td><td>Prop 65+FTC指南</td><td>—</td><td>🔴 REACH强制 + 🟡 FTC强制标注</td></tr>
+<tr><td>珠宝（儿童）</td><td>REACH+GPSR</td><td>CPSIA(铅100ppm)+ASTM F2923</td><td>CCPSA</td><td>🔴 全部强制</td></tr>
+<tr><td>PPE（呼吸防护）</td><td>PPE 2016/425+EN 149</td><td>NIOSH 42 CFR Part 84</td><td>—</td><td>🔴 全部强制</td></tr>
+<tr><td>PPE（安全手套）</td><td>PPE 2016/425+EN 388</td><td>ANSI/ISEA 105</td><td>—</td><td>🔴 EU强制 + 🟡 US行业强制</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<!-- Key takeaways -->
+<div class="note-box">
+  <h4>使用说明与关键提醒</h4>
+  <p>
+    ① 本清单涵盖<strong>10大品类、80+认证项</strong>，按品类→认证→执行年份→强制/自愿→目标市场→关键标准编号的结构呈现。<br>
+    ② <span class="badge s-enforced">已执行</span> = 法律/法规已在指定年份生效，出口前必须取得。不要等到海关扣货。<br>
+    ③ <span class="badge s-market">市场强制</span> = 非法条直接要求，但行业惯例/平台（Amazon）/零售商/保险公司已将此类认证列为事实上的准入门槛。<br>
+    ④ <span class="badge s-pending">将执行</span> = 法规已公布具体强制执行日期，请提前规划而非等到DDL。<br>
+    ⑤ <span class="badge s-voluntary">自愿性</span> = 差异化加分项，用于提升竞争壁垒、支撑更高定价和品牌形象。<br>
+    ⑥ 本表供跨品类快速参考，具体产品可能涉及多个认证叠加。<strong>建议与检测机构（SGS/Intertek/BV/TÜV）确认适用标准</strong>。<br>
+    ⑦ 贵司主业女包/鞋服的基础合规认证（GPSR/CPSC/REACH等）请参考此前创建的两份专项清单。
+  </p>
+</div>
+
+<div class="footer-info">
+  数据整理日期：2026年6月15日 · 法规持续更新中 · 使用前请与检测机构确认最新标准版本
+</div>
+
+</div><!-- .container -->
+
+<script>
+// Persist checkboxes
+function saveChecksAll() {
+  var checks = {};
+  document.querySelectorAll('.item-check').forEach(function(cb) {
+    checks[cb.dataset.id] = cb.checked;
+  });
+  localStorage.setItem('wb_all_category_checks', JSON.stringify(checks));
+  updateProgressAll();
+}
+
+function loadChecksAll() {
+  var saved = localStorage.getItem('wb_all_category_checks');
+  if (!saved) return;
+  var checks = JSON.parse(saved);
+  document.querySelectorAll('.item-check').forEach(function(cb) {
+    if (checks[cb.dataset.id] !== undefined) {
+      cb.checked = checks[cb.dataset.id];
+    }
+  });
+}
+
+document.querySelectorAll('.item-check').forEach(function(cb) {
+  cb.addEventListener('change', saveChecksAll);
+});
+
+function updateProgressAll() {
+  var total = document.querySelectorAll('.item-check').length;
+  var done = 0;
+  document.querySelectorAll('.item-check').forEach(function(cb) {
+    if (cb.checked) done++;
+  });
+  document.getElementById('progressText').textContent = done + '/' + total;
+  document.getElementById('progressFill').style.width = (total > 0 ? (done / total * 100) : 0) + '%';
+}
+
+// Count stats
+function updateStatsAll() {
+  var total = document.querySelectorAll('.item-check').length;
+  document.getElementById('totalCount').textContent = total;
+  var enforced = document.querySelectorAll('.badge.s-enforced').length;
+  var voluntary = document.querySelectorAll('.badge.s-voluntary').length + document.querySelectorAll('.badge.s-market').length;
+  document.getElementById('enforcedCount').textContent = enforced;
+  document.getElementById('voluntaryCount').textContent = voluntary;
+}
+
+// Init
+loadChecksAll();
+updateProgressAll();
+updateStatsAll();
+</script>
+
+</body>
+</html>

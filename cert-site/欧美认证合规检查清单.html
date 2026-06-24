@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>欧美认证合规检查清单 — 井太兰 · 女包/鞋服出口</title>
+<style>
+  :root {
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #555;
+    --border: #e2e8f0;
+    --p0: #dc2626;
+    --p0-bg: #fef2f2;
+    --p1: #ea580c;
+    --p1-bg: #fff7ed;
+    --p2: #2563eb;
+    --p2-bg: #eff6ff;
+    --p3: #16a34a;
+    --p3-bg: #f0fdf4;
+    --accent: #6366f1;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+  .container { max-width:1200px; margin:0 auto; padding:24px; }
+
+  /* Header */
+  .header { background:linear-gradient(135deg, #1e1b4b, #312e81); color:white; padding:36px 40px; border-radius:16px; margin-bottom:28px; }
+  .header h1 { font-size:28px; font-weight:700; margin-bottom:6px; }
+  .header .subtitle { font-size:14px; opacity:0.85; }
+  .header .meta { display:flex; gap:24px; margin-top:20px; flex-wrap:wrap; }
+  .header .meta-item { background:rgba(255,255,255,0.12); padding:8px 16px; border-radius:8px; font-size:13px; }
+
+  /* Stats bar */
+  .stats-bar { display:flex; gap:16px; margin-bottom:28px; flex-wrap:wrap; }
+  .stat-card { flex:1; min-width:140px; background:var(--card); border-radius:12px; padding:18px; text-align:center; border:1px solid var(--border); }
+  .stat-card .num { font-size:32px; font-weight:700; }
+  .stat-card .label { font-size:13px; color:var(--text-secondary); margin-top:4px; }
+  .stat-card.red .num { color:var(--p0); }
+  .stat-card.orange .num { color:var(--p1); }
+  .stat-card.blue .num { color:var(--p2); }
+  .stat-card.green .num { color:var(--p3); }
+
+  /* Tabs */
+  .tabs { display:flex; gap:6px; margin-bottom:24px; background:var(--card); border-radius:12px; padding:6px; border:1px solid var(--border); }
+  .tab { flex:1; padding:12px; text-align:center; border-radius:8px; cursor:pointer; font-weight:600; font-size:14px; border:none; background:transparent; color:var(--text-secondary); transition:all .2s; }
+  .tab:hover { background:#f1f5f9; }
+  .tab.active { background:var(--accent); color:white; }
+
+  /* Panel */
+  .panel { display:none; }
+  .panel.active { display:block; }
+
+  /* Section */
+  .section { margin-bottom:28px; }
+  .section-title { font-size:18px; font-weight:700; margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+  .section-title .emoji { font-size:22px; }
+  .section-subtitle { font-size:13px; color:var(--text-secondary); margin-bottom:16px; }
+
+  /* Item */
+  .item { background:var(--card); border-radius:12px; padding:20px 24px; margin-bottom:12px; border:1px solid var(--border); display:flex; gap:18px; align-items:flex-start; transition:box-shadow .2s; }
+  .item:hover { box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+  .item .check-col { padding-top:2px; }
+  .item .check-col input[type=checkbox] { width:20px; height:20px; cursor:pointer; accent-color:var(--accent); }
+  .item .content-col { flex:1; }
+  .item .title-row { display:flex; align-items:center; gap:10px; margin-bottom:6px; flex-wrap:wrap; }
+  .item .title-row .name { font-size:16px; font-weight:700; }
+  .item .desc { font-size:13px; color:var(--text-secondary); margin-bottom:8px; line-height:1.7; }
+  .item .details { background:#f8fafc; border-radius:8px; padding:14px 16px; margin-top:10px; font-size:13px; }
+  .item .details .row { display:flex; gap:8px; margin-bottom:6px; }
+  .item .details .row:last-child { margin-bottom:0; }
+  .item .details .key { font-weight:600; min-width:90px; color:var(--text-secondary); flex-shrink:0; }
+  .item .details .val { flex:1; }
+
+  /* Badges */
+  .badge { display:inline-block; padding:2px 10px; border-radius:20px; font-size:11px; font-weight:700; }
+  .badge.p0 { background:var(--p0-bg); color:var(--p0); }
+  .badge.p1 { background:var(--p1-bg); color:var(--p1); }
+  .badge.p2 { background:var(--p2-bg); color:var(--p2); }
+  .badge.p3 { background:var(--p3-bg); color:var(--p3); }
+  .badge.deadline { background:#fef3c7; color:#92400e; }
+  .badge.status-enforced { background:#dcfce7; color:#166534; }
+  .badge.status-pending { background:#fef3c7; color:#92400e; }
+  .badge.status-voluntary { background:#f1f5f9; color:#64748b; }
+
+  /* Progress bar */
+  .progress-wrap { background:var(--card); border-radius:12px; padding:20px; margin-bottom:24px; border:1px solid var(--border); }
+  .progress-wrap .label-row { display:flex; justify-content:space-between; margin-bottom:8px; font-size:14px; font-weight:600; }
+  .progress-bar { height:10px; background:#e2e8f0; border-radius:5px; overflow:hidden; }
+  .progress-fill { height:100%; background:var(--accent); border-radius:5px; transition:width .3s; }
+
+  /* Timeline items */
+  .timeline-item { display:flex; gap:16px; padding:14px 0; border-bottom:1px solid var(--border); }
+  .timeline-item:last-child { border-bottom:none; }
+  .timeline-date { font-size:12px; color:var(--text-secondary); min-width:110px; font-weight:600; }
+  .timeline-content { flex:1; font-size:14px; }
+  .timeline-content .name { font-weight:700; }
+  .timeline-content .detail { color:var(--text-secondary); font-size:13px; margin-top:2px; }
+
+  /* Legend */
+  .legend { display:flex; gap:18px; margin-bottom:20px; font-size:13px; flex-wrap:wrap; }
+  .legend-item { display:flex; align-items:center; gap:6px; }
+
+  /* Responsive */
+  @media (max-width:768px) {
+    .container { padding:12px; }
+    .header { padding:24px 20px; }
+    .header h1 { font-size:22px; }
+    .stats-bar { flex-wrap:wrap; }
+    .stat-card { min-width:120px; }
+    .tabs { flex-wrap:wrap; }
+    .tab { flex:1 1 45%; font-size:12px; padding:8px; }
+    .item { padding:14px; gap:12px; }
+  }
+
+  /* Inline product tag */
+  .product-tag { display:inline-block; padding:1px 8px; background:#f1f5f9; border-radius:4px; font-size:11px; color:var(--text-secondary); margin-right:4px; }
+  .product-tag.bags { background:#fce7f3; color:#be185d; }
+  .product-tag.shoes { background:#dbeafe; color:#1d4ed8; }
+  .product-tag.apparel { background:#d1fae5; color:#047857; }
+  .product-tag.all { background:#ede9fe; color:#6d28d9; }
+
+  button { font-family:inherit; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>欧美出口认证合规检查清单</h1>
+  <div class="subtitle">井太兰进出口有限公司 · 女包 / 鞋服 · 欧盟+美国 · 2026年6月</div>
+  <div class="meta">
+    <div class="meta-item">均价 €90</div>
+    <div class="meta-item">月销 30,000 件</div>
+    <div class="meta-item">Wisco + Soyama(FBA) + AP</div>
+    <div class="meta-item">生成日期 2026-06-15</div>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="stats-bar">
+  <div class="stat-card red">
+    <div class="num" id="count-p0">4</div>
+    <div class="label">P0 紧急</div>
+  </div>
+  <div class="stat-card orange">
+    <div class="num" id="count-p1">4</div>
+    <div class="label">P1 重要</div>
+  </div>
+  <div class="stat-card blue">
+    <div class="num" id="count-p2">3</div>
+    <div class="label">P2 建议</div>
+  </div>
+  <div class="stat-card green">
+    <div class="num" id="count-p3">4</div>
+    <div class="label">P3 加分</div>
+  </div>
+</div>
+
+<!-- Progress -->
+<div class="progress-wrap">
+  <div class="label-row"><span>总体合规进度</span><span id="progress-text">0 / 15 项完成</span></div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+</div>
+
+<!-- Legend -->
+<div class="legend">
+  <div class="legend-item"><span class="badge p0">P0</span> 1个月内截止，不完成将中断业务</div>
+  <div class="legend-item"><span class="badge p1">P1</span> 3个月内完成，清关/上架必备</div>
+  <div class="legend-item"><span class="badge p2">P2</span> 6个月内完成，显著提升竞争力</div>
+  <div class="legend-item"><span class="badge p3">P3</span> 按需推进，品牌溢价加分项</div>
+</div>
+<div class="legend" style="margin-bottom:20px;">
+  <div class="legend-item"><span class="badge status-enforced">已执行</span> 法规已生效，须立即合规</div>
+  <div class="legend-item"><span class="badge status-pending">将执行</span> 已公布强制日期，须提前准备</div>
+  <div class="legend-item"><span class="badge status-voluntary">自愿性</span> 非法定强制，市场驱动</div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('eu')">🇪🇺 欧盟市场</button>
+  <button class="tab" onclick="switchTab('us')">🇺🇸 美国市场</button>
+  <button class="tab" onclick="switchTab('common')">🌐 通用/平台</button>
+  <button class="tab" onclick="switchTab('timeline')">📅 时间线总览</button>
+</div>
+
+<!-- ===== EU Panel ===== -->
+<div class="panel active" id="panel-eu">
+
+  <div class="section">
+    <div class="section-title"><span class="emoji">🛡️</span> 基石法规</div>
+
+    <!-- GPSR -->
+    <div class="item" data-id="eu-gpsr" data-priority="p0">
+      <div class="check-col"><input type="checkbox" onchange="updateProgress()"></div>
+      <div class="content-col">
+        <div class="title-row">
+          <span class="name">GPSR 通用产品安全法规</span>
+          <span class="product-tag all">全品类</span>
+          <span class="badge p0">P0</span>
+          <span class="badge status-enforced">2024年12月 已执行</span>
+        </div>
+        <div class="desc">(EU) 2023/988，自2024年12月13日起强制执行，替代旧版GPSD指令。所有在欧盟/北爱尔兰销售的非食品消费品均须遵守，不合规将被海关扣押、平台下架。</div>
+        <div class="details">
+          <div class="row"><span class="key">指定欧代</span><span class="val">签署欧盟负责人协议，确保欧代在成员国境内有实体地址</span></div>
+          <div class="row"><span class="key">标签要求</span><span class="val">产品/包装标注：欧代名称+地址+电邮、制造商信息、产品类型、批次号/序列号</span></div>
+          <div class="row"><span class="key">安全警告</span><span class="val">以销售国语言标注安全信息（如小部件窒息风险、易燃警告）</span></div>
+          <div class="row"><span class="key">线上要求</span><span class="val">电商平台listing同步展示欧代信息+安全警告</span></div>
+          <div class="row"><span class="key">行动项</span><span class="val">①确认/更新欧代协议 ②审核产品标签模板 ③各SKU补齐安全信息 ④上传平台后台</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REACH -->
+    <div class="item" data-id="eu-reach" data-priority="p1">
+      <div class="check-col"><input type="checkbox" onchange="updateProgress()"></div>
+      <div class="content-col">
+        <div class="title-row">
+          <span class="name">REACH 化学品注册评估授权限制</span>
+          <span class="product-tag all">全品类</span>
+          <span class="badge p1">P1</span>
+          <span class="badge status-enforced">2007年6月 已执行</span>
+        </div>
+        <div class="desc">(EC) 1907/2006，自2007年6月1日生效，持续更新中。限制产品中有害化学物质含量。鞋服箱包高风险项：偶氮染料（皮革/纺织品）、六价铬（皮革）、邻苯二甲酸酯（合成材料）、PFAS（防水涂层）。SVHC高关注物质清单持续更新（目前240+项，2026年仍在扩增）。</div>
+        <div class="details">
+          <div class="row"><span class="key">检测重点</span><span class="val">偶氮染料（≤30mg/kg）、六价铬（≤3mg/kg，皮革）、邻苯二甲酸酯（≤0.1%）</span></div>
+          <div class="row"><span class="key">供应链</span><span class="val">要求皮料/面料供应商提供REACH合规声明</span></div>
+          <div class="row"><span class="key">送检</span><span class="val">选取代表性SKU送Intertek/SGS/TUV做REACH全套检测</span></div>
+          <div class="row"><span class="key">行动项</span><span class="val">①供应商合规声明收集 ②高风险材料专项送检 ③建立SVHC年度跟踪机制</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="emoji">🧪</span> 产品专项认证</div>
+
+    <!-- OEKO-TEX Leather -->
+    <div class="item" data-id="eu-oeko-leather" data-priority="p2">
+      <div class="check-col"><input type="checkbox" onchange="updateProgress()"></div>
+      <div class="content-col">
+        <div class="title-row">
+          <span class="name">OEKO-TEX® LEATHER STANDARD</span>
+          <span class="product-tag bags">女包</span>
+          <span class="product-tag shoes">鞋</span>
+          <span class="badge p2">P2</span>
+          <span class="badge status-voluntary">自愿性认证</span>
+        </div>
+        <div class="desc">德国海恩斯坦研究院推出的皮革产品有害物质检测认证，覆盖皮革及辅料（拉链、扣件）。检测甲醛、重金属、杀虫剂等。非法定强制，但欧洲买家普遍将此列为供应商审核门槛。</div>
+        <div class="details">
+          <div class="row"><span class="key">适用范围</span><span class="val">所有皮革制品 + 辅料（拉链、五金扣件、内衬）</span></div>
+          <div class="row"><span class="key">认证机构</span><span class="val">OEKO-TEX协会成员机构（海恩斯坦、TESTEX等）</span></div>
+          <div class="row"><span class="key">周期</span><span class="val">约4-8周，年审制</span></div>
+          <div class="row"><span class="key">行动项</span><span class="val">①联系认证机构获取报价 ②选取主力皮料送检 ③评估证书在吊牌/listing上使用的营销价值</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OEKO-TEX 100 -->
+    <div class="item" data-id="eu-oeko-100" data-priority="p2">
+      <div class="check-col"><input type="checkbox" onchange="updateProgress()"></div>
+      <div class="content-col">
+        <div class="title-row">
+          <span class="name">OEKO-TEX® STANDARD 100</span>
+          <span class="product-tag apparel">服装</span>
+          <span class="product-tag shoes">鞋面</span>
+          <span class="badge p2">P2</span>
+          <span class="badge status-voluntary">自愿性认证</span>
+        </div>
+        <div class="desc">纺织品有害物质检测的全球通用认证，自1992年推出。适用于鞋服纺织品（不含皮革），对甲醛、重金属、杀虫剂、氯化苯酚等限量要求严格。非法定强制，但国际市场广泛认可。</div>
+        <div class="details">
+          <div class="row"><span class="key">产品等级</span><span class="val">产品等级II（直接接触皮肤）— 适用于鞋服</span></div>
+          <div class="row"><span class="key">行动项</span><span class="val">①服装面料送检 ②将证书上传至平台listing增强信任</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="emoji">🌿</span> 加分认证</div>
+
+    <!-- EU Ecolabel -->
+    <div class="item" data-id="eu-ecolabel" data-priority="p3">
+      <div class="check-col"><input type="checkbox" onchange="updateProgress()"></div>
+      <div class="content-col">
+        <div class="title-row">
+          <span class="name">EU Ecolabel 欧盟生态标签</span>
+          <span class="product-tag all">全品类</span>
+          <span class="badge p3">P3</span>
+          <span class="badge status-voluntary">自愿性认证</span>
+        </div>
+        <div class="desc">欧盟官方环保认证（1992年设立），覆盖鞋类、纺织品。要求从原材料采购、生产制造到产品寿命结束全周期环保合规。非法定强制，对欧洲环保意识强的消费者群体有显著营销价值。</div>
+        <div class="details">
+          <div class="row"><span class="key">门槛</span><span class="val">需全生命周期环保合规，对供应链要求极高</span></div>
+          <div class="row"><span class="key">建议</span><span class="val">先行评估供应链是否满足，再决定是否申请</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /EU Panel -->
+
+<!-- ===== US Panel ===== -->
+<div class="panel" id="panel-us">
+
+  <div class="section">
+    <div class="section-title"><span class="emoji">⚖️</span> 联邦法规</div>
+
+    <!-- CPSC eFiling -->
+    <div class="item" data-id="us-cpsc-efiling" data-priority="p0">
+      <div class="check-col"><input type="checkbox" onchange="updateProgress()"></div>
+      <div class="content-col">
+        <div class="title-row">
+          <span class="name">CPSC eFiling 电子合规申报</span>
+          <span class="product-tag all">全品类</span>
+          <span class="badge p0">P0</span>
+          <span class="badge status-pending">2026年7月8日 将执行</span>
+        </div>
+        <div class="desc">2025年1月8日CPSC发布最终规则（16 CFR Part 1110），2026年7月8日起全面强制执行。所有受CPSC监管的产品进口美国时须通过CBP ACE系统提交电子合规证书（GCC/CPC）。此前为自愿试点，此后全面强制——只剩不到一个月！</div>
+        <div class="details">
+          <div class="row"><span class="key">核心变化</span><span class="val">eFiling从自愿试点 → 2026年7月8日全面强制，所有鞋服箱包均须电子申报</span></div>
+          <div class="row"><span class="key">必备文件</span><span class="val">GCC（通用合格证书）或CPC（儿童产品证书）+ 第三方检测报告</span></div>
+          <div class="row"><span class="key">申报渠道</span><span class="val">通过报关行在CBP ACE系统中提交，或使用CPSC Product Registry</span></div>
+          <div class="row"><span class="key">行动项</span><span class="val">①确认现有GCC是否覆盖所有SKU ②与报关行确认eFiling流程 ③补做缺失的第三方检测 ④建立内部eFiling数据模板</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GCC -->
+    <div class="item" data-id="us-gcc" data-priority="p0">
+      <div class="check-col"><input type="checkbox" onchange="updateProgress()"></div>
+      <div class="content-col">
+        <div class="title-row">
+          <span class="name">GCC 通用合格证书</span>
+          <span class="product-tag all">全品类（成人）</span>
+          <span class="badge p0">P0</span>
+          <span class="badge status-enforced">2008年 已执行</span>
+        </div>
+        <div class="desc">CPSIA第102条（2008年），General Certificate of Conformity。成人消费品进口美国须出具，基于CPSC认可第三方实验室检测。是eFiling的核心支撑文件，2026年7月8日后须电子化提交。</div>
+        <div class="details">
+          <div class="row"><span class="key">必须包含</span><span class="val">产品标识、适用安全标准、检测机构信息、制造商/进口商信息、签署人签名+日期</span></div>
+          <div class="row"><span class="key">检测标准</span><span class="val">服装：16 CFR Part 1610（可燃性）；鞋类：16 CFR Part 1610 + 结构安全；箱包：铅含量限制</span></div>
+          <div class="row"><span class="key">检测机构</span><span class="val">CPSC认可的第三方实验室（SGS、Intertek、Bureau Veritas等）</span></div>
+          <div class="row"><span class="key">行动项</span><span class="val">①按产品类别（包/鞋/服）选取代表SKU送检 ②出具GCC ③与eFiling模板对接</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 16 CFR 1610 -->
+    <div class="item" data-id="us-16cfr1610" data-priority="p1">
+      <div class="check-col"><input type="checkbox" onchange="updateProgress()"></div>
+      <div class="content-col">
+        <div class="title-row">
+          <span class="name">16 CFR Part 1610 服装纺织品可燃性标准</span>
+          <span class="product-tag apparel">服装</span>
+          <span class="product-tag shoes">鞋</span>
+          <span class="badge p1">P1</span>
+          <span class="badge status-enforced">1953年 已执行</span>
+        </div>
+        <div class="desc">《易燃织物法案》（FFA）下的联邦强制标准，1953年颁布，持续更新。适用于所有服装纺织品及鞋类。分三类：Class 1（正常可燃性，可销售）、Class 2（中等，可销售但需谨慎）、Class 3（高可燃性，禁止销售）。</div>
+        <div class="details">
+          <div class="row"><span class="key">检测项目</span><span class="val">45°燃烧测试，评估燃烧时间</span></div>
+          <div class="row"><span class="key">特殊面料</span><span class="val">起绒面料/人造纤维面料有更严格要求</span></div>
+          <div class="row"><span class="key">行动项</span><span class="val">①纳入GCC检测套餐中一并送检 ②起绒面料单独加测</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="emoji">🏛️</span> 州级/专项法规</div>
+
+    <!-- Prop 65 -->
+    <div class="item" data-id="us-prop65" data-priority="p1">
+      <div class="check-col"><input type="checkbox" onchange="updateProgress()"></div>
+      <div class="content-col">
+        <div class="title-row">
+          <span class="name">加州 Prop 65 安全饮用水与有毒物质强制法案</span>
+          <span class="product-tag all">全品类</span>
+          <span class="badge p1">P1</span>
+          <span class="badge status-enforced">1986年 已执行</span>
+        </div>
+        <div class="desc">加州《安全饮用水与有毒物质强制法案》（1986年公投通过），虽为州法律，但因加州经济体量巨大（占美国GDP约15%），实质上已成为全国性准入门槛。要求含致癌/生殖毒性物质的产品标注警告，否则面临高额诉讼。</div>
+        <div class="details">
+          <div class="row"><span class="key">高风险项</span><span class="val">皮革中六价铬、合成材料中邻苯二甲酸酯（DEHP/DBP/BBP）、铅含量</span></div>
+          <div class="row"><span class="key">合规方式</span><span class="val">①检测证明低于安全港限值 → 无需标注 ②无法避免 → 产品标注警告标签</span></div>
+          <div class="row"><span class="key">诉讼风险</span><span class="val">Prop 65诉讼量极大（专业律师所批量发起），不合规可能面临和解费+律师费</span></div>
+          <div class="row"><span class="key">行动项</span><span class="val">①对核心SKU做Prop 65物质检测 ②在listing/包装上添加合规警告语（如需）</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CPSIA / CPC -->
+    <div class="item" data-id="us-cpsia" data-priority="p2">
+      <div class="check-col"><input type="checkbox" onchange="updateProgress()"></div>
+      <div class="content-col">
+        <div class="title-row">
+          <span class="name">CPSIA 消费品安全改进法案</span>
+          <span class="product-tag all">若涉儿童产品</span>
+          <span class="badge p2">P2</span>
+          <span class="badge status-enforced">2008年 已执行</span>
+        </div>
+        <div class="desc">CPSIA（2008年8月14日签署生效）。如果贵司出口产品中有儿童鞋服箱包（面向12岁及以下），则触发更严格的要求：总铅≤100ppm、特定邻苯二甲酸酯≤0.1%，须出具CPC（儿童产品证书）替代GCC。</div>
+        <div class="details">
+          <div class="row"><span class="key">触发条件</span><span class="val">产品主要面向12岁及以下儿童</span></div>
+          <div class="row"><span class="key">主要区别</span><span class="val">CPC比GCC更严格：铅限制+邻苯限制+追踪标签+第三方强制检测</span></div>
+          <div class="row"><span class="key">建议</span><span class="val">如目前无儿童线，暂不触发；如有，则优先级升至P0</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="emoji">🌟</span> 加分认证</div>
+
+    <!-- USDA BioPreferred -->
+    <div class="item" data-id="us-biopreferred" data-priority="p3">
+      <div class="check-col"><input type="checkbox" onchange="updateProgress()"></div>
+      <div class="content-col">
+        <div class="title-row">
+          <span class="name">USDA BioPreferred 生物基产品认证</span>
+          <span class="product-tag all">若含生物基材料</span>
+          <span class="badge p3">P3</span>
+          <span class="badge status-voluntary">自愿性认证</span>
+        </div>
+        <div class="desc">美国农业部自愿性认证（2002年设立）。如果产品使用生物基材料（如植物鞣制皮革、天然纤维面料），可申请此标签提升环保形象。非法定强制。</div>
+        <div class="details">
+          <div class="row"><span class="key">适用性</span><span class="val">取决于材料构成，一般女包鞋服触及较少</span></div>
+          <div class="row"><span class="key">建议</span><span class="val">品牌化战略阶段再评估</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /US Panel -->
+
+<!-- ===== Common Panel ===== -->
+<div class="panel" id="panel-common">
+
+  <div class="section">
+    <div class="section-title"><span class="emoji">📦</span> 跨境电商平台要求</div>
+
+    <!-- Amazon Compliance -->
+    <div class="item" data-id="common-amazon" data-priority="p0">
+      <div class="check-col"><input type="checkbox" onchange="updateProgress()"></div>
+      <div class="content-col">
+        <div class="title-row">
+          <span class="name">Amazon 平台合规（欧美站）</span>
+          <span class="product-tag all">全品类</span>
+          <span class="badge p0">P0</span>
+          <span class="badge status-enforced">已执行（持续审核）</span>
+        </div>
+        <div class="desc">Amazon对鞋服箱包类目有独立的合规审核要求，随法规更新动态调整（如GPSR生效后欧盟站新增GPSR审核项）。需要通过卖家后台上传检测报告和合规文件。不合规将被限制上架或下架已有listing。</div>
+        <div class="details">
+          <div class="row"><span class="key">美国站</span><span class="val">GCC + 16 CFR 1610检测报告 + Prop 65（如适用）+ 儿童产品CPC（如适用）</span></div>
+          <div class="row"><span class="key">欧盟站</span><span class="val">GPSR合规信息（欧代）+ REACH检测报告 + 产品安全信息</span></div>
+          <div class="row"><span class="key">上传路径</span><span class="val">Seller Central → 绩效 → 账户状况 → 合规参考 → 提交合规文件</span></div>
+          <div class="row"><span class="key">行动项</span><span class="val">①检查现有listing合规状态 ②补齐缺失文件 ③设置合规到期提醒（避免自动下架）</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 通用体系认证 -->
+    <div class="item" data-id="common-iso9001" data-priority="p3">
+      <div class="check-col"><input type="checkbox" onchange="updateProgress()"></div>
+      <div class="content-col">
+        <div class="title-row">
+          <span class="name">ISO 9001 质量管理体系</span>
+          <span class="product-tag all">全品类</span>
+          <span class="badge p3">P3</span>
+          <span class="badge status-voluntary">自愿性认证</span>
+        </div>
+        <div class="desc">国际标准化组织质量管理体系标准，1987年首次发布。国际贸易B2B场景中，欧美买家（尤其是大型零售商/品牌方）常将ISO 9001设为供应商审核的门槛条件。虽非法定要求，但缺失可能影响大客户合作机会。</div>
+        <div class="details">
+          <div class="row"><span class="key">周期</span><span class="val">约3-6个月，年审制</span></div>
+          <div class="row"><span class="key">行动项</span><span class="val">①评估B2B客户是否要求 ②如需要，联系认证机构（SGS/TUV/BV）启动</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRS -->
+    <div class="item" data-id="common-grs" data-priority="p3">
+      <div class="check-col"><input type="checkbox" onchange="updateProgress()"></div>
+      <div class="content-col">
+        <div class="title-row">
+          <span class="name">GRS 全球回收标准</span>
+          <span class="product-tag all">含回收材料产品</span>
+          <span class="badge p3">P3</span>
+          <span class="badge status-voluntary">自愿性认证</span>
+        </div>
+        <div class="desc">Textile Exchange推出的全球回收标准（2008年设立）。适用于含回收材料（如再生涤纶、再生皮革）的产品。非法定强制，但欧美消费者对可持续材料关注度持续上升，GRS认证可显著提升品牌溢价空间。</div>
+        <div class="details">
+          <div class="row"><span class="key">触发条件</span><span class="val">产品含回收材料且希望以此为卖点</span></div>
+          <div class="row"><span class="key">要求</span><span class="val">回收含量≥20%（标签可注明）；≥50%可标注"主要含回收材料"</span></div>
+          <div class="row"><span class="key">周期</span><span class="val">约2-4个月</span></div>
+          <div class="row"><span class="key">行动项</span><span class="val">①确认是否有使用回收材料的产品线 ②如有，评估认证ROI</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /Common Panel -->
+
+<!-- ===== Timeline Panel ===== -->
+<div class="panel" id="panel-timeline">
+
+  <div class="section">
+    <div class="section-title"><span class="emoji">📅</span> 关键时间节点</div>
+    <div class="section-subtitle">以下为各认证/法规的关键时间线与建议推进节奏，按紧急程度排序。</div>
+
+    <div class="item" style="border-left:4px solid var(--p0)">
+      <div class="content-col" style="width:100%">
+        <div class="timeline-item">
+          <div class="timeline-date">2026年6月<br><span class="badge p0" style="font-size:10px">立即</span></div>
+          <div class="timeline-content">
+            <div class="name">GPSR 合规审查</div>
+            <div class="detail">审核欧代协议、产品标签、安全警告、平台listing信息是否完整</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2026年6月<br><span class="badge p0" style="font-size:10px">立即</span></div>
+          <div class="timeline-content">
+            <div class="name">GCC + 第三方检测启动</div>
+            <div class="detail">按包/鞋/服三个品类选取代表SKU送SGS/Intertek做检测，为eFiling做准备</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2026年6月<br><span class="badge p0" style="font-size:10px">立即</span></div>
+          <div class="timeline-content">
+            <div class="name">报关行eFiling流程对接</div>
+            <div class="detail">确认美国报关行支持eFiling，建立数据模板，测试申报流程</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date"><strong>2026年7月8日</strong><br><span class="badge status-pending" style="font-size:10px">将执行</span></div>
+          <div class="timeline-content">
+            <div class="name">CPSC eFiling 强制执行</div>
+            <div class="detail">所有鞋服箱包产品入美必须电子申报合规证书，否则海关不予放行</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2026年Q3<br><span class="badge p1" style="font-size:10px">重要</span></div>
+          <div class="timeline-content">
+            <div class="name">REACH检测 + Prop 65检测</div>
+            <div class="detail">完成欧线有害物质检测和美线加州合规检测，覆盖亚马逊两大站点审核</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2026年Q4<br><span class="badge p2" style="font-size:10px">建议</span></div>
+          <div class="timeline-content">
+            <div class="name">OEKO-TEX认证启动</div>
+            <div class="detail">申请LEATHER STANDARD（女包/鞋）和STANDARD 100（服装），提升欧洲买家信任度</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2027年H1<br><span class="badge p3" style="font-size:10px">加分</span></div>
+          <div class="timeline-content">
+            <div class="name">ISO 9001 / GRS / EU Ecolabel 评估</div>
+            <div class="detail">根据品牌战略和客户需求决定是否推进</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /Timeline Panel -->
+
+</div><!-- /container -->
+
+<script>
+// Tab switching
+function switchTab(tabName) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + tabName).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// Progress tracking
+function updateProgress() {
+  const allCheckboxes = document.querySelectorAll('.item input[type=checkbox]');
+  const checked = document.querySelectorAll('.item input[type=checkbox]:checked');
+  const total = allCheckboxes.length;
+  const done = checked.length;
+  const pct = total > 0 ? Math.round(done / total * 100) : 0;
+
+  document.getElementById('progress-text').textContent = done + ' / ' + total + ' 项完成';
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+// Load from localStorage
+(function() {
+  const allCbs = document.querySelectorAll('.item input[type=checkbox]');
+  allCbs.forEach(cb => {
+    const item = cb.closest('.item');
+    const id = item.dataset.id;
+    const saved = localStorage.getItem('cert-checklist-' + id);
+    if (saved === 'checked') cb.checked = true;
+    cb.addEventListener('change', function() {
+      localStorage.setItem('cert-checklist-' + id, cb.checked ? 'checked' : '');
+      updateProgress();
+    });
+  });
+  updateProgress();
+})();
+</script>
+
+</body>
+</html>
